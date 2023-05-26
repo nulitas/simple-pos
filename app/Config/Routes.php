@@ -15,6 +15,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
+$routes->setAutoRoute(true);
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -29,7 +30,34 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Auth::login');
+$routes->get('main/home', 'Main::index');
+$routes->get('main/dashboard', 'Main::dashboard');
+$routes->get('main/users', 'Main::users');
+$routes->get('main/products', 'Main::products');
+$routes->get('main/transactions', 'Main::transactions');
+
+
+
+// Product
+$routes->get('product/add', 'Product::add');
+$routes->get('product/store', 'Product::store');
+$routes->get('product/view', 'Product::view/$1');
+
+
+$routes->get('cart/index', 'Cart::index');
+
+
+// Transaction
+$routes->get('transaction/check', 'Transaction::check');
+
+
+// auth
+$routes->get('auth/login', 'Auth::login', ['as' => 'login']);
+$routes->post('auth/login/process', 'Auth::process', ['as' => 'auth']);
+$routes->get('auth/register', 'Auth::register', ['as' => 'register']);
+$routes->post('auth/register/store', 'Auth::store', ['as' => 'store']);
+$routes->get('/logout', 'Auth::logout', ['as' => 'logout']);
 
 /*
  * --------------------------------------------------------------------
