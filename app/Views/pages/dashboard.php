@@ -13,10 +13,10 @@
                         <div class="flex flex-wrap">
                             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                                 <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                    Traffic
+                                    Carts
                                 </h5>
                                 <span class="font-semibold text-xl text-blueGray-700">
-                                    350,897
+                                    <?= $count_carts ?>
                                 </span>
                             </div>
                             <div class="relative w-auto pl-4 flex-initial">
@@ -42,10 +42,10 @@
                         <div class="flex flex-wrap">
                             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                                 <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                    New users
+                                    Transactions
                                 </h5>
                                 <span class="font-semibold text-xl text-blueGray-700">
-                                    2,356
+                                    <?= $count_transactions ?>
                                 </span>
                             </div>
                             <div class="relative w-auto pl-4 flex-initial">
@@ -71,7 +71,7 @@
                         <div class="flex flex-wrap">
                             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                                 <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                    Product
+                                    Products
                                 </h5>
                                 <span class="font-semibold text-xl text-blueGray-700">
                                     <?= $count_products ?>

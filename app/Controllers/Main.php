@@ -38,9 +38,11 @@ class Main extends BaseController
             'product' => $product,
             'count_carts' => count($this->cartModel->findAll()),
             'cartProductName' => $this->cartModel->find('name'),
-
+            // stock - quantity 
 
         ];
+
+
 
         return view('pages/home', $data);
     }
@@ -52,6 +54,7 @@ class Main extends BaseController
         $data = [
             'title' => 'Dashboard',
             'count_carts' => count($this->cartModel->findAll()),
+            'count_transactions' => count($this->transactionModel->findAll()),
             'count_users' => count($this->userModel->findAll()),
             'count_products' => count($this->productModel->findAll())
         ];

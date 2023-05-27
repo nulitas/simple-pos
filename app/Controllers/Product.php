@@ -6,11 +6,13 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\ProductModel;
 use App\Models\CartModel;
+use App\Models\StockModel;
 
 class Product extends BaseController
 {
     protected $userModel;
     protected $productModel;
+    protected $stockModel;
     protected $cartModel;
     protected $helper = ['form'];
 
@@ -18,6 +20,7 @@ class Product extends BaseController
     {
         $this->userModel = new UserModel();
         $this->productModel = new ProductModel();
+        $this->stockModel = new StockModel();
         $this->cartModel = new CartModel();
     }
 
@@ -68,12 +71,58 @@ class Product extends BaseController
 
         ]);
 
+        $stockdata = [];
+        $stockdata['id'] = $this->productModel->insertID();
+        $stockdata['amount'] = 50;
+        $this->stockModel->save($stockdata);
+
 
 
 
 
         return redirect()->to(base_url('main/products'));
     }
+
+
+    public function edit($id)
+    {
+        $data = [
+            'title' => 'Edit',
+            'product' => $this->productModel->where(['id' => $id])->first(),
+            'count_carts' => count($this->cartModel->findAll()),
+        ];
+
+        return view('pages/products/edit', $data);
+    }
+
+
+    public function update($id)
+    {
+
+
+        $fileImg = $this->request->getFile('image');
+        $fileImg->move('img');
+        $covers = $fileImg->getName();
+
+
+        $this->productModel->save([
+            'id' => $id,
+            'image' => $covers,
+            'name' => $this->request->getVar('name'),
+            'category' => $this->request->getVar('category'),
+            'price' => $this->request->getVar('price'),
+            'stock' => $this->request->getVar('stock'),
+            'description' => $this->request->getVar('description'),
+
+        ]);
+
+        session()->setFlashdata('msg', 'Data has been updated.');
+
+        return redirect()->to('/main');
+    }
+
+
+
 
     public function view($id = false)
     {
@@ -88,5 +137,13 @@ class Product extends BaseController
 
 
         return view('pages/products/view', $data);
+    }
+
+    public function delete($id)
+    {
+
+        $this->productModel->delete($id);
+
+        return redirect()->to('main/products');
     }
 }

@@ -40,17 +40,17 @@
                                     <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
                                     <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
                                 </span>
+
+
+
                             </p>
                         </div>
                     </div>
                 </div>
 
 
-                <?php if ($value['name'] == $value) :  ?>
 
-                    <button type="submit">Hello</button>
 
-                <?php endif ?>
 
                 <?= form_close() ?>
             <?php endforeach ?>
