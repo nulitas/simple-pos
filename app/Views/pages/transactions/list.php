@@ -31,27 +31,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            1
-                        </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                        <td class="px-6 py-4">
-                            Detail | Delete
-                        </td>
-                    </tr>
-
+                    <?php $i = 1; ?>
+                    <?php foreach ($transactions as $t) : ?>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <?= $i ?>
+                            </th>
+                            <td class="px-6 py-4">
+                                <?= $t['code'] ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?= $t['customer'] ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?= $t['total_amount'] ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?= $t['tendered'] ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                Detail | Delete
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

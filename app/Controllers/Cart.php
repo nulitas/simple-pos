@@ -24,9 +24,11 @@ class Cart extends BaseController
             'title' => 'Add Product',
             // 'cart' => $this->cartModel->paginate(5),
             'cart' => $this->cartModel->findAll(),
+            'product' => $this->productModel->findAll(),
             'pager' => $this->cartModel->pager,
             'count_carts' => count($this->cartModel->findAll()),
             'total' => $this->cartModel->select('sum(price * quantity) as total')->first(),
+            'total_quantity' => $this->cartModel->select('sum(quantity) as total_quantity')->first(),
 
 
             // 'cart' => \Config\Services::cart()
@@ -40,15 +42,7 @@ class Cart extends BaseController
 
     public function add()
     {
-        // $cart = \Config\Services::cart();
-        // $data = array(
-        //     'id'      => 'sku_1234ABCD',
-        //     'qty'     => 1,
-        //     'price'   => '19.56',
-        //     'name'    => 'T-Shirt',
-        //     'options' => array('Size' => 'L', 'Color' => 'Red')
-        // );
-        // $cart->insert($data);
+
 
         $this->cartModel->save([
             'image' => $this->request->getVar('image'),

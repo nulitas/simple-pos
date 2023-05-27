@@ -56,6 +56,7 @@ $routes->delete('cart/(:num)', 'Cart::delete/$1');
 
 // Transaction
 $routes->get('transaction/check', 'Transaction::check');
+$routes->get('transaction/add', 'Transaction::add');
 
 
 // auth

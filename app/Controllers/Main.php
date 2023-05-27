@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\RoleModel;
 use App\Models\ProductModel;
 use App\Models\CartModel;
+use App\Models\TransactionModel;
 
 
 class Main extends BaseController
@@ -16,6 +17,7 @@ class Main extends BaseController
     protected $productModel;
     protected $roleModel;
     protected $cartModel;
+    protected $transactionModel;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class Main extends BaseController
         $this->roleModel = new RoleModel();
         $this->productModel = new ProductModel();
         $this->cartModel = new CartModel();
+        $this->transactionModel = new TransactionModel();
     }
 
 
@@ -70,8 +73,10 @@ class Main extends BaseController
 
     public function transactions()
     {
+        $transactions = $this->transactionModel->findAll();
         $data = [
             'title' => 'Transactions',
+            'transactions' => $transactions,
             'count_carts' => count($this->cartModel->findAll())
 
         ];
