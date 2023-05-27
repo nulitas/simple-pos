@@ -22,9 +22,12 @@ class Cart extends BaseController
     {
         $data = [
             'title' => 'Add Product',
+            // 'cart' => $this->cartModel->paginate(5),
             'cart' => $this->cartModel->findAll(),
+            'pager' => $this->cartModel->pager,
             'count_carts' => count($this->cartModel->findAll()),
             'total' => $this->cartModel->select('sum(price * quantity) as total')->first(),
+
 
             // 'cart' => \Config\Services::cart()
         ];
@@ -51,9 +54,12 @@ class Cart extends BaseController
             'image' => $this->request->getVar('image'),
             'name' => $this->request->getVar('name'),
             'price' => $this->request->getVar('price'),
-            'quantity' => 1
+            'quantity' => $this->request->getVar('quantity')
 
         ]);
+
+
+
 
         return redirect()->to(base_url('main/home'));
     }
@@ -81,5 +87,14 @@ class Cart extends BaseController
 
 
         $cart->destroy();
+    }
+
+
+    public function delete($id)
+    {
+
+        $this->cartModel->delete($id);
+
+        return redirect()->to('cart/index');
     }
 }

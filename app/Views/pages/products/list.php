@@ -64,7 +64,8 @@
                             <td class="px-6 py-4">
                                 <?= $p['stock'] ?> </td>
                             <td class="px-6 py-4">
-                                Edit | Delete </td>
+                                <a href="<?= base_url('/product/edit') ?>">Edit</a> | Delete
+                            </td>
                         </tr>
 
                     <?php endforeach ?>

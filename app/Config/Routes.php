@@ -45,7 +45,13 @@ $routes->get('product/store', 'Product::store');
 $routes->get('product/view', 'Product::view/$1');
 
 
+// Cart
 $routes->get('cart/index', 'Cart::index');
+
+// Delete
+$routes->delete('product/(:num)', 'Product::delete/$1');
+$routes->delete('cart/(:num)', 'Cart::delete/$1');
+
 
 
 // Transaction

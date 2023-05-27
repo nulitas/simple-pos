@@ -44,6 +44,14 @@
                         </div>
                     </div>
                 </div>
+
+
+                <?php if ($value['name'] == $value) :  ?>
+
+                    <button type="submit">Hello</button>
+
+                <?php endif ?>
+
                 <?= form_close() ?>
             <?php endforeach ?>
 
