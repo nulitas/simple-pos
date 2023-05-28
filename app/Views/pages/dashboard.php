@@ -30,7 +30,7 @@
                                 <i class="fas fa-arrow-up"></i>
                             </span>
                             <span class="whitespace-nowrap">
-                                Since last month
+                                -
                             </span>
                         </p>
                     </div>
@@ -59,7 +59,7 @@
                                 <i class="fas fa-arrow-down"></i>
                             </span>
                             <span class="whitespace-nowrap">
-                                Since last week
+                                -
                             </span>
                         </p>
                     </div>
@@ -88,7 +88,7 @@
                                 <i class="fas fa-arrow-down"></i>
                             </span>
                             <span class="whitespace-nowrap">
-                                Since yesterday
+                                -
                             </span>
                         </p>
                     </div>
@@ -107,7 +107,7 @@
                                 </span>
                             </div>
                             <div class="relative w-auto pl-4 flex-initial">
-                                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500">
+                                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-blue-500">
                                     <i class="fas fa-users"></i>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                 <i class="fas fa-arrow-up"></i>
                             </span>
                             <span class="whitespace-nowrap">
-                                Since last month
+                                -
                             </span>
                         </p>
                     </div>
