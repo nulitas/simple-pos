@@ -83,6 +83,7 @@
             <input type="hidden" name="total_amount" value="0">
             <p> Rp.<?= $total = array_sum($total) ?> </p>
 
+
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="w-full">
                     <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>

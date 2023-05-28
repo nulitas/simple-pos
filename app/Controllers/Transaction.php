@@ -26,6 +26,16 @@ class Transaction extends BaseController
 
     public function add()
     {
+        $tendered = $this->request->getVar('tendered');
+
+        $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
+
+        if ($tendered < $grandtotal) {
+            return redirect()->to(base_url('main/home'));
+        } else {
+            $fixTendered = $tendered;
+        }
+
         extract($this->request->getPost());
 
         $pref = date("Ymd");
@@ -40,7 +50,7 @@ class Transaction extends BaseController
             }
         }
 
-        $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
+
 
 
         // $quantity =  $this->request->getVar('quantity');
@@ -50,7 +60,7 @@ class Transaction extends BaseController
         $this->transactionModel->save([
             'code' => $code,
             'customer' => $this->request->getVar('customer'),
-            'tendered' => $this->request->getVar('tendered'),
+            'tendered' => $fixTendered,
             'total_amount' => $grandtotal,
         ]);
 

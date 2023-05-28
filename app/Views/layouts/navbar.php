@@ -44,12 +44,17 @@
                         <span class="flex-1 ml-3 whitespace-nowrap">Transactions</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?= base_url('main/users') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-users"></i>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
-                    </a>
-                </li>
+
+                <?php if (session()->role != 'Cashier') : ?>
+
+                    <li>
+                        <a href="<?= base_url('main/users') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <i class="fas fa-users"></i>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
+                        </a>
+                    </li>
+
+                <?php endif ?>
 
                 <li>
                     <a href="<?= base_url('main/products') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
