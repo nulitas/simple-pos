@@ -43,6 +43,8 @@
                             <img src=" /img/<?= $item['image'] ?>" class="border-2 border-solid border-white" alt="<?= $item['image'] ?>">
 
                         </td>
+
+
                         <td class="px-6 py-4">
                             <?= $item['name'] ?>
                         </td>
