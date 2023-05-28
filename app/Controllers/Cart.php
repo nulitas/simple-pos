@@ -63,7 +63,6 @@ class Cart extends BaseController
 
 
         $this->cartModel->save([
-            'image' => $this->request->getVar('image'),
             'name' => $this->request->getVar('name'),
             'price' => $this->request->getVar('price'),
             'quantity' => $qty,

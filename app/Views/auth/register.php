@@ -2,15 +2,17 @@
 
 <?= $this->section('content') ?>
 
-<section class="bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-            Add an account
-        </a>
-        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+<div class="sm:ml-64">
 
-                <form class="space-y-4 md:space-y-6" action="<?= base_url('auth/register/store') ?>" method="POST">
+
+    <section class=" bg-gray-900">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <a href="#" class="flex items-center  text-2xl font-semibold  text-white">
+                Add an account
+            </a>
+            <div class="p-6 space-y-2  sm:p-8">
+
+                <form class="space-y-2 " action="<?= base_url('auth/register/store') ?>" method="POST">
                     <?= csrf_field(); ?>
 
 
@@ -21,32 +23,40 @@
                     ?>
 
                     <div>
-                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
-                        <input type="username" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                        <label for="username" class="block mb-2 text-sm font-medium  text-white">Your username</label>
+                        <input type="username" name="username" id="username" class=" border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="name@company.com" required="">
                     </div>
                     <div>
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <label for="password" class="block mb-2 text-sm font-medium  text-white">Password</label>
+                        <input type="password" name="password" id="password" placeholder="••••••••" class="border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="">
                     </div>
 
                     <div>
-                        <label for="passwordconf" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Confirmation</label>
-                        <input type="password" name="passwordconf" id="passwordconf" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <label for="passwordconf" class="block mb-2 text-sm font-medium  text-white">Password Confirmation</label>
+                        <input type="password" name="passwordconf" id="passwordconf" placeholder="••••••••" class="border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="">
                     </div>
                     <div>
-                        <select name="roles" id="roles" class="text-black">
+                        <select name="roles" id="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <?php foreach ($role as $r) : ?>
                                 <option value="<?= $r['id'] ?>"> <?= $r['name'] ?> </option>
                             <?php endforeach ?>
                         </select>
                     </div>
-                    <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Add</button>
-
+                    <a href="#_" class="relative inline-block px-4 py-2 font-medium group my-4">
+                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                        <span class="absolute inset-0 w-full h-full bg-gray-700 border-2 border-black group-hover:bg-gray-700"></span>
+                        <button type="submit" class="relative text-slate-400 group-hover:text-white">
+                            Add User
+                        </button>
+                    </a>
                 </form>
             </div>
+
         </div>
-    </div>
-</section>
+    </section>
+
+
+</div>
 
 
 <?= $this->endSection(); ?>

@@ -6,7 +6,8 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
-        <div class="flex flex-wrap">
+        <h1 class=" text-2xl font-bold">..> Dashboard</h1>
+        <div class="m-4 flex flex-wrap">
             <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <div class="relative flex flex-col min-w-0 break-words bg-dark rounded mb-6 xl:mb-0 shadow-lg">
                     <div class="flex-auto p-4">
@@ -124,7 +125,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- <h1>Hello, World!</h1> -->
     </div>
+
 </div>
 </div>
 </div>

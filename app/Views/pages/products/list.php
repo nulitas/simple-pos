@@ -4,9 +4,15 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
-        <div class="grid grid-cols-5 gap-4 mb-4">
-            <a href="<?= base_url('product/add') ?>" class="w-full text-white bg-gray-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                + Add Product
+        <h1 class=" text-2xl font-bold">..> Products</h1>
+        <div class="grid grid-cols-5 gap-4 m-4">
+
+            <a href="<?= base_url('product/add') ?>" class="relative inline-block px-4 py-2 font-medium group my-4">
+                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-gray-700 border-2 border-black group-hover:bg-gray-700"></span>
+                <span class="relative text-slate-400 group-hover:text-white">
+                    + Add Product
+                </span>
             </a>
         </div>
 
@@ -74,6 +80,11 @@
                         </tr>
 
                     <?php endforeach ?>
+                    <?php if (count($product) <= 0) : ?>
+                        <tr>
+                            <td class="p-4 text-center" colspan="7">not found.</td>
+                        </tr>
+                    <?php endif ?>
                 </tbody>
             </table>
         </div>

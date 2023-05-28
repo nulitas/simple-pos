@@ -160,17 +160,25 @@
                                 to: <?= $customer ?><br /><br />
                             </td>
                         </tr>
+
+                        <tr class="heading">
+                            <td>Item</td>
+
+                            <td>Price</td>
+                        </tr>
+
+                        <tr class="item">
+
+
+                            <td>Total: Rp.<?= $total_amount ?></td>
+                        </tr>
                     </table>
                 </td>
             </tr>
 
 
 
-            <tr class="total">
-                <td></td>
 
-                <td>Total: Rp.<?= $total_amount ?></td>
-            </tr>
         </table>
     </div>
 </body>

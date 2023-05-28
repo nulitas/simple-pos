@@ -33,7 +33,7 @@ class Auth extends BaseController
         }
 
         $data = [
-            'title' => 'Login'
+            'title' => 'Posu'
         ];
 
 

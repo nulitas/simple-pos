@@ -9,6 +9,13 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
 
+            <li>
+                <h1 class="flex items-center mb-6 text-3xl font-bold  text-white">
+                    /p<span class=" text-pink-500">osu<s>!!</s></span>
+                </h1>
+            </li>
+
+
 
             <li>
                 <a href="<?= base_url('main/home') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">

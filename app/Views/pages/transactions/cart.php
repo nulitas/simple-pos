@@ -4,16 +4,14 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
-
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <h1 class=" text-2xl font-bold">..> Cart</h1>
+        <table class="m-4 w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         #
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Cover
-                    </th>
+
                     <th scope="col" class="px-6 py-3">
                         Product Name
                     </th>
@@ -39,10 +37,6 @@
                             <?= $i++ ?>
                         </th>
 
-                        <td class="px-6 py-4">
-                            <img src=" /img/<?= $item['image'] ?>" class="border-2 border-solid border-white" alt="<?= $item['image'] ?>">
-
-                        </td>
 
 
                         <td class="px-6 py-4">
@@ -56,13 +50,13 @@
                         </td>
 
                         <td class="px-6 py-4">
-                            <?= $item['price'] ?> </td>
+                            Rp.<?= $item['price'] ?> </td>
 
                         <td class="px-6 py-4">
                             <form action="/cart/<?= $item['id'] ?>" method="post" class="d-inline">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700  focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </td>
@@ -70,7 +64,11 @@
 
 
                 <?php endforeach ?>
-
+                <?php if (count($cart) <= 0) : ?>
+                    <tr>
+                        <td class="p-4 text-center" colspan="7">not found.</td>
+                    </tr>
+                <?php endif ?>
             </tbody>
         </table>
 
@@ -84,19 +82,25 @@
             <p> Rp.<?= $total = array_sum($total) ?> </p>
 
 
-            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div class="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="w-full">
                     <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
-                    <input type="text" name="customer" id="customer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Agus">
+                    <input type="text" name="customer" id="customer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nulitas">
                 </div>
                 <div class="w-full">
                     <label for="tendered" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tendered</label>
-                    <input type="number" name="tendered" id="tendered" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="1000">
+                    <input type="number" name="tendered" id="tendered" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="999">
                 </div>
             </div>
-            <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                Buy
-            </button>
+
+
+            <a href="#_" class="relative inline-block px-4 py-2 font-medium group my-4">
+                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-gray-700 border-2 border-black group-hover:bg-gray-700"></span>
+                <button type="submit" class="relative text-slate-400 group-hover:text-white">
+                    Buy
+                </button>
+            </a>
         </form>
 
     </div>

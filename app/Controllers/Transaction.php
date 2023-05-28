@@ -54,11 +54,12 @@ class Transaction extends BaseController
 
 
         // $quantity =  $this->request->getVar('quantity');
-        // $prodName = $this->request->getVar('name');
+        $prodName = $this->request->getVar('name');
 
 
         $this->transactionModel->save([
             'code' => $code,
+            'product_name' => $prodName,
             'customer' => $this->request->getVar('customer'),
             'tendered' => $fixTendered,
             'total_amount' => $grandtotal,

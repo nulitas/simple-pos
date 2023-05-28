@@ -5,7 +5,8 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
-        <div class="flex flex-wrap">
+        <h1 class=" text-2xl font-bold">..> Home</h1>
+        <div class="flex flex-wrap m-5">
             <?php foreach ($product as $p => $value) : ?>
 
                 <div data-tilt class="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -13,29 +14,29 @@
 
 
                     <div class="relative flex flex-col min-w-0 border-2 border-solid border-white break-words bg-dark rounded mb-6 xl:mb-0 shadow-lg">
-
+                        <div class="text-white  inline-flex items-center justify-center  shadow-lg">
+                            <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white object-cover w-full h-20" alt="<?= $value['image'] ?>">
+                        </div>
                         <div class="flex-auto p-4">
-
                             <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-
-                                        <?= form_open('/cart/add') ?>
-                                        <?= form_hidden('name', $value['name']); ?>
-                                        <?= form_hidden('price', $value['price']); ?>
-                                        <?= $value['category'] ?> </td>
-
-                                    </h5>
-
-                                    <span class="font-semibold text-xl text-blueGray-700">
-                                        <?= $value['name'] ?>
-                                    </span>
-
-                                </div>
                                 <div class="relative w-auto pl-4 flex-initial">
-                                    <div class="text-white p-3 text-center inline-flex items-center justify-center w-28 h-28 shadow-lg">
-                                        <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white max-w-[100%] h-20" alt="<?= $value['image'] ?>">
+
+                                    <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                        <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+
+                                            <?= form_open('/cart/add') ?>
+                                            <?= form_hidden('name', $value['name']); ?>
+                                            <?= form_hidden('price', $value['price']); ?>
+                                            <?= $value['category'] ?> </td>
+
+                                        </h5>
+
+                                        <span class="font-semibold text-xl text-blueGray-700">
+                                            <?= $value['name'] ?>
+                                        </span>
+
                                     </div>
+
                                 </div>
                             </div>
                             <?php if ($value['stock'] <= 0) : ?>
