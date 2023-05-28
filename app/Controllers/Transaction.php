@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\TransactionModel;
+// use App\Models\TransactionItemModel;
 use App\Models\CartModel;
 use Dompdf\Dompdf;
 
@@ -12,6 +13,7 @@ class Transaction extends BaseController
 {
     protected $productModel;
     protected $transactionModel;
+    // protected $transactionItemModel;
     protected $cartModel;
     protected $helper = ['form'];
 
@@ -20,6 +22,7 @@ class Transaction extends BaseController
 
         $this->productModel = new ProductModel();
         $this->transactionModel = new TransactionModel();
+        // $this->transactionItemModel = new TransactionItemModel();
         $this->cartModel = new CartModel();
     }
 
@@ -54,16 +57,16 @@ class Transaction extends BaseController
 
 
         // $quantity =  $this->request->getVar('quantity');
-        $prodName = $this->request->getVar('name');
+
 
 
         $this->transactionModel->save([
             'code' => $code,
-            'product_name' => $prodName,
             'customer' => $this->request->getVar('customer'),
             'tendered' => $fixTendered,
             'total_amount' => $grandtotal,
         ]);
+
 
 
         // $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();

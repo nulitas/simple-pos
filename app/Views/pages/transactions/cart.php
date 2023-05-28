@@ -78,6 +78,8 @@
 
         <form action="<?= base_url('transaction/add') ?>" method="POST">
             <?= csrf_field() ?>
+            <input type="hidden" name="product_id[]">
+            <input type="hidden" name="price[]" value="0">
             <input type="hidden" name="total_amount" value="0">
             <p> Rp.<?= $total = array_sum($total) ?> </p>
 

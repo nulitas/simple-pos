@@ -144,17 +144,13 @@
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td>
-                                bg<br />
-                            </td>
 
                             <td>
                                 From: Admin<br />
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                            </td>
+                            >
 
                             <td>
                                 to: <?= $customer ?><br /><br />
@@ -162,9 +158,9 @@
                         </tr>
 
                         <tr class="heading">
-                            <td>Item</td>
 
-                            <td>Price</td>
+
+                            <td>Total Price</td>
                         </tr>
 
                         <tr class="item">
