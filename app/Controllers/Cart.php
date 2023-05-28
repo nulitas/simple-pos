@@ -24,7 +24,7 @@ class Cart extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Add Product',
+            'title' => 'Cart',
             // 'cart' => $this->cartModel->paginate(5),
             'cart' => $this->cartModel->findAll(),
             'product' => $this->productModel->findAll(),
@@ -32,8 +32,6 @@ class Cart extends BaseController
             'count_carts' => count($this->cartModel->findAll()),
             'total' => $this->cartModel->select('sum(price * quantity) as total')->first(),
             'total_quantity' => $this->cartModel->select('sum(quantity) as total_quantity')->first(),
-
-
             // 'cart' => \Config\Services::cart()
         ];
 

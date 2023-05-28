@@ -31,16 +31,17 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::login');
-$routes->get('main/home', 'Main::index');
-$routes->get('main/dashboard', 'Main::dashboard');
-$routes->get('main/users', 'Main::users');
-$routes->get('main/products', 'Main::products');
-$routes->get('main/transactions', 'Main::transactions');
+$routes->get('main/home', 'Main::index', ['filter' => 'auth']);
+$routes->get('main/dashboard', 'Main::dashboard', ['filter' => 'auth']);
+$routes->get('main/users', 'Main::users', ['filter' => 'auth']);
+$routes->get('main/products', 'Main::products', ['filter' => 'auth']);
+$routes->get('main/transactions', 'Main::transactions', ['filter' => 'auth']);
 
 
 
 // Product
-$routes->get('product/add', 'Product::add');
+
+$routes->get('product/add', 'Product::add ', ['filter' => 'auth']);
 $routes->get('product/store', 'Product::store');
 $routes->get('product/edit/(:segment)', 'Product::edit/$1');
 $routes->get('product/view', 'Product::view/$1');
@@ -49,23 +50,26 @@ $routes->get('product/view', 'Product::view/$1');
 
 
 
+
+
+
 // Cart
-$routes->get('cart/index', 'Cart::index');
+$routes->get('cart/index', 'Cart::index', ['filter' => 'auth']);
 
 // Delete
-$routes->delete('product/(:num)', 'Product::delete/$1');
-$routes->delete('cart/(:num)', 'Cart::delete/$1');
-$routes->delete('transaction/(:num)', 'Transaction::delete/$1');
+$routes->delete('product/(:num)', 'Product::delete/$1', ['filter' => 'auth']);
+$routes->delete('cart/(:num)', 'Cart::delete/$1', ['filter' => 'auth']);
+$routes->delete('transaction/(:num)', 'Transaction::delete/$1', ['filter' => 'auth']);
 
 
 
 // Transaction
-$routes->get('transaction/view', 'Transaction::generate');
-$routes->get('transaction/add', 'Transaction::add');
+$routes->get('transaction/view', 'Transaction::generate', ['filter' => 'auth']);
+$routes->get('transaction/add', 'Transaction::add', ['filter' => 'auth']);
 // PDF
 $routes->get('transaction/generate/(:any)', 'Transaction::generate/$1');
 
-$routes->get('user/add', 'Auth::add');
+$routes->get('user/add', 'Auth::add', ['filter' => 'auth']);
 
 
 // auth

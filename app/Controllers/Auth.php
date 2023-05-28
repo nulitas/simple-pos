@@ -120,4 +120,14 @@ class Auth extends BaseController
         $this->session->destroy();
         return redirect()->to(url_to('/'));
     }
+
+
+
+    public function delete($id)
+    {
+
+        $this->userModel->delete($id);
+
+        return redirect()->to('main/users');
+    }
 }

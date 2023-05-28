@@ -23,9 +23,9 @@
                         <th scope="col" class="px-6 py-3">
                             Role
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <!-- <th scope="col" class="px-6 py-3">
                             Actions
-                        </th>
+                        </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -43,9 +43,9 @@
 
                                 <?= $u['role'] ?>
                             </td>
-                            <td class="px-6 py-4">
+                            <!-- <td class="px-6 py-4">
                                 Edit | Delete
-                            </td>
+                            </td> -->
 
                         </tr>
 

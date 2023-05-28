@@ -36,7 +36,7 @@
                                     <i class="fas fa-arrow-up"></i> <?= $value['stock'] ?>
                                 </span>
                                 <span class="whitespace-nowrap">
-                                    <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-900 border-none ">
+                                    <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-700 border-none ">
                                     <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
                                     <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
                                 </span>
