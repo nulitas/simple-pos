@@ -60,10 +60,10 @@ $routes->delete('transaction/(:num)', 'Transaction::delete/$1');
 
 
 // Transaction
-$routes->get('transaction/check', 'Transaction::check');
+$routes->get('transaction/view', 'Transaction::generate');
 $routes->get('transaction/add', 'Transaction::add');
 // PDF
-$routes->get('transaction/generate', 'Transaction::generate');
+$routes->get('transaction/generate/(:any)', 'Transaction::generate/$1');
 
 $routes->get('user/add', 'Auth::add');
 

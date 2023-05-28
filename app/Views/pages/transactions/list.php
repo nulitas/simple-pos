@@ -50,7 +50,7 @@
                                 <?= $t['tendered'] ?>
                             </td>
                             <td class="px-6 py-4 flex">
-                                <a href="/transaction/view/<?= $t['id'] ?>">Detail</a> | <form action="/transaction/<?= $t['id'] ?>" method="post" class="d-inline">
+                                <a href="/transaction/generate/<?= $t['id'] ?>">View</a> | <form action="/transaction/<?= $t['id'] ?>" method="post" class="d-inline">
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>

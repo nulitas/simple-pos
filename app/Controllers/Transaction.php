@@ -63,7 +63,7 @@ class Transaction extends BaseController
         return redirect()->to(base_url('main/home'));
     }
 
-    public function view($id = false)
+    public function detail($id = false)
     {
 
         $transaction = $this->transactionModel->where(['id' => $id])->first();
@@ -74,7 +74,7 @@ class Transaction extends BaseController
 
         ];
 
-        return view('pages/transactions/view', $data);
+        return view('pages/transactions/detail', $data);
     }
 
 
@@ -86,12 +86,14 @@ class Transaction extends BaseController
         return redirect()->to('main/transactions');
     }
 
-    public function generate()
+    public function generate($id = false)
     {
         $dompdf = new Dompdf();
-        $transaction = $this->transactionModel->select('*')->orderBy('id', 'DESC')->limit(1)->first();
+        // $transaction = $this->transactionModel->select('*')->orderBy('id', 'DESC')->limit(1)->first();
+        $transaction = $this->transactionModel->select('*')->where(['id' => $id])->first();
 
         $data = [
+            'id' => $transaction['id'],
             'code' => $transaction['code'],
             'customer' => $transaction['customer'],
             'total_amount' => $transaction['total_amount'],
