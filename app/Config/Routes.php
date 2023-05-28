@@ -44,8 +44,11 @@ $routes->get('product/add', 'Product::add');
 $routes->get('product/store', 'Product::store');
 $routes->get('product/edit/(:segment)', 'Product::edit/$1');
 $routes->get('product/view', 'Product::view/$1');
-$routes->get('product/list', 'Product::list');
 
+
+
+// PDF
+$routes->get('pdf/generate', 'PdfController::generate');
 
 // Cart
 $routes->get('cart/index', 'Cart::index');
@@ -53,6 +56,7 @@ $routes->get('cart/index', 'Cart::index');
 // Delete
 $routes->delete('product/(:num)', 'Product::delete/$1');
 $routes->delete('cart/(:num)', 'Cart::delete/$1');
+$routes->delete('transaction/(:num)', 'Transaction::delete/$1');
 
 
 

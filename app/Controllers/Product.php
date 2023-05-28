@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\ProductModel;
 use App\Models\CartModel;
-use App\Models\StockModel;
+// use App\Models\StockModel;
 
 class Product extends BaseController
 {
@@ -20,7 +20,7 @@ class Product extends BaseController
     {
         $this->userModel = new UserModel();
         $this->productModel = new ProductModel();
-        $this->stockModel = new StockModel();
+        // $this->stockModel = new StockModel();
         $this->cartModel = new CartModel();
     }
 
@@ -70,13 +70,6 @@ class Product extends BaseController
             'description' => $this->request->getVar('description'),
 
         ]);
-
-        $stockdata = [];
-        $stockdata['id'] = $this->productModel->insertID();
-        $stockdata['amount'] = 50;
-        $this->stockModel->save($stockdata);
-
-
 
 
 
@@ -134,7 +127,6 @@ class Product extends BaseController
             'count_carts' => count($this->cartModel->findAll()),
 
         ];
-
 
         return view('pages/products/view', $data);
     }

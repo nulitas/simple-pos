@@ -20,7 +20,6 @@
 
                                     </h5>
 
-
                                     <span class="font-semibold text-xl text-blueGray-700">
                                         <?= $value['name'] ?>
                                     </span>
@@ -40,8 +39,6 @@
                                     <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
                                     <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
                                 </span>
-
-
 
                             </p>
                         </div>

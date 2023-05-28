@@ -13,7 +13,7 @@ class StockModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['product_id', 'amount'];
+    protected $allowedFields    = ['name', 'amount'];
 
     // Dates
     protected $useTimestamps = false;

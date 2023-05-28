@@ -40,6 +40,7 @@ class Transaction extends BaseController
         }
 
         $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
+
         $this->transactionModel->save([
             'code' => $code,
             'customer' => $this->request->getVar('customer'),
@@ -47,8 +48,33 @@ class Transaction extends BaseController
             'total_amount' => $grandtotal,
         ]);
 
+        $this->cartModel->emptyTable('cart');
+
 
 
         return redirect()->to(base_url('main/home'));
+    }
+
+    public function view($id = false)
+    {
+
+        $transaction = $this->transactionModel->where(['id' => $id])->first();
+        $data = [
+            'title' => 'View',
+            'transaction' => $transaction,
+            'count_carts' => count($this->cartModel->findAll()),
+
+        ];
+
+        return view('pages/transactions/view', $data);
+    }
+
+
+    public function delete($id)
+    {
+
+        $this->transactionModel->delete($id);
+
+        return redirect()->to('main/transactions');
     }
 }

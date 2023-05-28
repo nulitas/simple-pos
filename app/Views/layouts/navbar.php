@@ -8,18 +8,19 @@
 <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
+
+
             <li>
                 <a href="<?= base_url('main/home') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="fa-solid fa-house"></i>
                     <span class="ml-3">Home</span>
                 </a>
             </li>
-            <li>
-                <a href="<?= base_url('main/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <span class="ml-3">Dashboard</span>
-                </a>
-            </li>
+
+
+
+
+
             <li>
                 <a href="<?= base_url('cart/index') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <i class="fas fa-shopping-cart"></i>
@@ -28,26 +29,36 @@
                     </span>
                 </a>
             </li>
-            <li>
-                <a href="<?= base_url('main/transactions') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i class="fa-solid fa-money-check-dollar"></i>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Transactions</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?= base_url('main/users') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i class="fas fa-users"></i>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="<?= base_url('main/products') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i class="fa-solid fa-book-skull"></i>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Products</span>
-                </a>
-            </li>
+            <?php if (session()->role != 'Buyer') : ?>
 
+                <li>
+                    <a href="<?= base_url('main/dashboard') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                </li>
 
+                <li>
+                    <a href="<?= base_url('main/transactions') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fa-solid fa-money-check-dollar"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Transactions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('main/users') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-users"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= base_url('main/products') ?>" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fa-solid fa-book-skull"></i>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Products</span>
+                    </a>
+                </li>
+
+            <?php endif ?>
 
 
             <?php if (session()->get('isLoggedIn')) : ?>

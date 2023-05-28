@@ -5,12 +5,12 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\CartModel;
 use App\Models\ProductModel;
-use App\Models\StockModel;
+// use App\Models\StockModel;
 
 class Cart extends BaseController
 {
     protected $productModel;
-    protected $stockModel;
+    // protected $stockModel;
     protected $cartModel;
     protected $helper = ['form'];
 
@@ -18,7 +18,7 @@ class Cart extends BaseController
     {
         $this->cartModel = new CartModel();
         $this->productModel = new ProductModel();
-        $this->stockModel = new StockModel();
+        // $this->stockModel = new StockModel();
     }
 
     public function index()
@@ -48,31 +48,23 @@ class Cart extends BaseController
 
         // stock - quantity 
         $quantity =  $this->request->getVar('quantity');
+        $prodName = $this->request->getVar('name');
+
+
+        // $this->stock->where(['name' => $this->request->getPost('item_name')])->set('stock', "stock - $stockQty", FALSE )->update();
 
 
 
-        $product = $this->productModel->find('id');
-        $currentStock = $product['stock'];
-        $updatedStock = $currentStock - $quantity;
-        $updateQty = $this->productModel->update('product_id', ['stock' => $updatedStock]);
 
         $this->cartModel->save([
             'image' => $this->request->getVar('image'),
             'name' => $this->request->getVar('name'),
             'price' => $this->request->getVar('price'),
             'quantity' => $quantity,
-            'updateQtys' => $updateQty
-
         ]);
 
-        dd($product);
 
-        // $amount = $this->stockModel->select('amount')->find('product_id');
-        // $data = [];
-        // $this->stockModel->update('product_id', $data);
-
-
-
+        $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
 
 
 
