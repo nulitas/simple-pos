@@ -45,10 +45,19 @@ class Cart extends BaseController
     {
 
         // stock - quantity 
+
+
+
         $quantity =  $this->request->getVar('quantity');
+
+
+        if ($quantity <= 0) {
+            return redirect()->to(base_url('main/home'));
+        } else {
+            $qty = $quantity;
+        }
+
         $prodName = $this->request->getVar('name');
-
-
 
 
 
@@ -57,7 +66,7 @@ class Cart extends BaseController
             'image' => $this->request->getVar('image'),
             'name' => $this->request->getVar('name'),
             'price' => $this->request->getVar('price'),
-            'quantity' => $quantity,
+            'quantity' => $qty,
         ]);
 
         // Stock
