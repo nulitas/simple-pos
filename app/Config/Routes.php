@@ -41,11 +41,11 @@ $routes->get('main/transactions', 'Main::transactions', ['filter' => 'auth']);
 
 // Product
 
-$routes->get('product/add', 'Product::add ', ['filter' => 'auth']);
+$routes->get('product/add', 'Product::add');
 $routes->get('product/store', 'Product::store');
 $routes->get('product/edit/(:segment)', 'Product::edit/$1');
 $routes->get('product/view', 'Product::view/$1');
-
+$routes->get('product/list', 'Product::list');
 
 
 

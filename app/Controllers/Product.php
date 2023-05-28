@@ -27,7 +27,7 @@ class Product extends BaseController
     public function add()
     {
 
-        session();
+
         $data = [
             'title' => 'Add Product',
             'count_carts' => count($this->cartModel->findAll()),
