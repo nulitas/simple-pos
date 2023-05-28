@@ -51,7 +51,6 @@ class Cart extends BaseController
         $prodName = $this->request->getVar('name');
 
 
-        // $this->stock->where(['name' => $this->request->getPost('item_name')])->set('stock', "stock - $stockQty", FALSE )->update();
 
 
 
@@ -63,7 +62,7 @@ class Cart extends BaseController
             'quantity' => $quantity,
         ]);
 
-
+        // Stock
         $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
 
 
@@ -88,17 +87,15 @@ class Cart extends BaseController
     }
 
 
-    public function clear()
-    {
-        $cart = \Config\Services::cart();
-
-
-        $cart->destroy();
-    }
-
 
     public function delete($id)
     {
+        // $prodName = $this->request->getVar('name');
+        // $quantity =  $this->request->getVar('quantity');
+        // $updatedStock = $this->productModel->where('name', 'name')->set('stock', "stock + $quantity", FALSE)->update();
+
+
+
 
         $this->cartModel->delete($id);
 

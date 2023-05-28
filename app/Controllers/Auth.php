@@ -5,10 +5,11 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\RoleModel;
+use App\Models\CartModel;
 
 class Auth extends BaseController
 {
-
+    protected $cartModel;
     protected $userModel;
     protected $roleModel;
     protected $helper = ['form'];
@@ -17,7 +18,11 @@ class Auth extends BaseController
     {
         $this->userModel = new UserModel();
         $this->roleModel = new RoleModel();
+        $this->cartModel = new CartModel();
     }
+
+
+
 
 
     public function login()
@@ -70,12 +75,12 @@ class Auth extends BaseController
     public function register()
     {
 
-        if (session('isLoggedIn')) {
-            return redirect()->to(site_url('main/home'));
-        }
+
 
         $data = [
-            'title' => 'Register'
+            'title' => 'Register',
+            'count_carts' => count($this->cartModel->findAll()),
+            'role' => $this->roleModel->find()
         ];
 
 
@@ -100,12 +105,12 @@ class Auth extends BaseController
             $data = [
                 'username' => $this->request->getVar('username'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-                'role' => 3
+                'role' => $this->request->getVar('roles'),
             ];
 
             $this->userModel->save($data);
 
-            return redirect()->to(url_to('login'));
+            return redirect()->to(url_to('main/users'));
         }
     }
 

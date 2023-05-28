@@ -23,10 +23,11 @@
                                     <span class="font-semibold text-xl text-blueGray-700">
                                         <?= $value['name'] ?>
                                     </span>
+
                                 </div>
                                 <div class="relative w-auto pl-4 flex-initial">
                                     <div class="text-white p-3 text-center inline-flex items-center justify-center w-28 h-28 shadow-lg">
-                                        <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white" alt="<?= $value['image'] ?>">
+                                        <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white max-w-[100%] h-20" alt="<?= $value['image'] ?>">
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +36,7 @@
                                     <i class="fas fa-arrow-up"></i> <?= $value['stock'] ?>
                                 </span>
                                 <span class="whitespace-nowrap">
-                                    <input type="number" name="quantity" id="quantity" class="text-black">
+                                    <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-900 border-none ">
                                     <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
                                     <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
                                 </span>

@@ -47,8 +47,7 @@ $routes->get('product/view', 'Product::view/$1');
 
 
 
-// PDF
-$routes->get('pdf/generate', 'PdfController::generate');
+
 
 // Cart
 $routes->get('cart/index', 'Cart::index');
@@ -63,6 +62,10 @@ $routes->delete('transaction/(:num)', 'Transaction::delete/$1');
 // Transaction
 $routes->get('transaction/check', 'Transaction::check');
 $routes->get('transaction/add', 'Transaction::add');
+// PDF
+$routes->get('transaction/generate', 'Transaction::generate');
+
+$routes->get('user/add', 'Auth::add');
 
 
 // auth

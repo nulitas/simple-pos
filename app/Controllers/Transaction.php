@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\TransactionModel;
 use App\Models\CartModel;
+use Dompdf\Dompdf;
 
 class Transaction extends BaseController
 {
@@ -41,6 +42,11 @@ class Transaction extends BaseController
 
         $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
 
+
+        // $quantity =  $this->request->getVar('quantity');
+        // $prodName = $this->request->getVar('name');
+
+
         $this->transactionModel->save([
             'code' => $code,
             'customer' => $this->request->getVar('customer'),
@@ -48,10 +54,12 @@ class Transaction extends BaseController
             'total_amount' => $grandtotal,
         ]);
 
+
+        // $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
+
+
+
         $this->cartModel->emptyTable('cart');
-
-
-
         return redirect()->to(base_url('main/home'));
     }
 
@@ -76,5 +84,24 @@ class Transaction extends BaseController
         $this->transactionModel->delete($id);
 
         return redirect()->to('main/transactions');
+    }
+
+    public function generate()
+    {
+        $dompdf = new Dompdf();
+        $transaction = $this->transactionModel->select('*')->orderBy('id', 'DESC')->limit(1)->first();
+
+        $data = [
+            'code' => $transaction['code'],
+            'customer' => $transaction['customer'],
+            'total_amount' => $transaction['total_amount'],
+            'tendered' => $transaction['tendered'],
+            'created_at' => $transaction['created_at']
+        ];
+        $html = view('pages/transactions/view.php', $data);
+        // $html = "<h1> Example </h1>";
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $dompdf->stream('generate.pdf', ['Attachment' => false]);
     }
 }

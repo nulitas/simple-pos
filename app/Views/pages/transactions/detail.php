@@ -21,7 +21,9 @@
                 <table>
                     <thead>
                         <tr>
-
+                            <th scope="col">
+                                #
+                            </th>
                             <th scope="col">
                                 Code
                             </th>
@@ -33,9 +35,6 @@
                             </th>
                             <th scope="col">
                                 Tendered
-                            </th>
-                            <th scope="col">
-                                Date
                             </th>
 
                         </tr>
@@ -49,27 +48,26 @@
 
                             </th>
                             <td>
-                                <?= $code ?>
+                                <?= $transaction['code'] ?>
                             </td>
                             <td>
-                                <?= $customer ?>
+                                <?= $transaction['customer'] ?>
                             </td>
                             <td>
-                                <?= $total_amount ?>
+                                <?= $transaction['total_amount'] ?>
                             </td>
                             <td>
-                                <?= $tendered ?>
+                                <?= $transaction['tendered'] ?>
                             </td>
-                            <td>
-                                <?= $created_at ?>
-                            </td>
-
 
                         </tr>
 
                     </tbody>
                 </table>
 
+                <a href="<?php base_url('pdf/generate') ?>">
+                    Download PDF
+                </a>
             </div>
 
         </div>

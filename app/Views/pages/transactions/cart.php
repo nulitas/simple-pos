@@ -47,10 +47,10 @@
                             <?= $item['name'] ?>
                         </td>
                         <td class="px-6 py-4">
+                            <?= $item['quantity'] ?> </td>
 
+                        <!-- <input type="number" name="quantity" id="quantity" class="text-black"> -->
 
-                            <?= $item['quantity'] ?>
-                            <!-- <input type="number" name="quantity" id="quantity"> -->
                         </td>
 
                         <td class="px-6 py-4">
