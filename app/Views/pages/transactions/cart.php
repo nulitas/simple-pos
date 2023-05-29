@@ -5,8 +5,8 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
         <h1 class=" text-2xl font-bold">..> Cart</h1>
-        <table class="m-4 w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="m-4 w-full text-sm text-left shadow-lg text-gray-500 text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         #
@@ -31,9 +31,9 @@
 
                 <?php $i = 1 ?>
                 <?php foreach ($cart as $item) : ?>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr class=" border-b bg-gray-800 border-gray-700">
 
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-white">
                             <?= $i++ ?>
                         </th>
 
@@ -56,7 +56,7 @@
                             <form action="/cart/<?= $item['id'] ?>" method="post" class="d-inline">
                                 <?= csrf_field() ?>
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700  focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700  focus:ring-4 focus:ring-primary-200 focus:ring-primary-900 hover:bg-primary-800" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </td>
@@ -86,12 +86,12 @@
 
             <div class="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="w-full">
-                    <label for="customer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
-                    <input type="text" name="customer" id="customer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="nulitas">
+                    <label for="customer" class="block mb-2 text-sm font-medium  text-white">Your Name</label>
+                    <input type="text" name="customer" id="customer" class="bg-gray-50 border border-gray-300 text-black  text-sm  focus:ring-black focus:border-black block w-full p-2.5  placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500" placeholder="nulitas">
                 </div>
                 <div class="w-full">
-                    <label for="tendered" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tendered</label>
-                    <input type="number" name="tendered" id="tendered" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="999">
+                    <label for="tendered" class="block mb-2 text-sm font-medium  text-white">Tendered</label>
+                    <input type="number" name="tendered" id="tendered" class="bg-gray-50 border border-gray-300 text-black text-sm  focus:ring-black focus:border-black block w-full p-2.5  placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500" placeholder="999">
                 </div>
             </div>
 

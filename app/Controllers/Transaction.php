@@ -33,7 +33,7 @@ class Transaction extends BaseController
 
         $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
 
-        if ($tendered < $grandtotal) {
+        if ($grandtotal == 0 || $tendered < $grandtotal) {
             return redirect()->to(base_url('main/home'));
         } else {
             $fixTendered = $tendered;

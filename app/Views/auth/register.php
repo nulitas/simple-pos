@@ -5,7 +5,7 @@
 <div class="sm:ml-64">
 
 
-    <section class=" bg-gray-900">
+    <section>
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="#" class="flex items-center  text-2xl font-semibold  text-white">
                 Add an account
@@ -24,19 +24,19 @@
 
                     <div>
                         <label for="username" class="block mb-2 text-sm font-medium  text-white">Your username</label>
-                        <input type="username" name="username" id="username" class=" border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="name@company.com" required="">
+                        <input type="username" name="username" id="username" class=" border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-white border-gray-600 placeholder-gray-400 text-black focus:ring-black focus:border-black" placeholder="admin" required="">
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium  text-white">Password</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="">
+                        <input type="password" name="password" id="password" placeholder="••••••••" class="border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-white border-gray-600 placeholder-gray-400 text-black focus:ring-black focus:border-black" required="">
                     </div>
 
                     <div>
                         <label for="passwordconf" class="block mb-2 text-sm font-medium  text-white">Password Confirmation</label>
-                        <input type="password" name="passwordconf" id="passwordconf" placeholder="••••••••" class="border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="">
+                        <input type="password" name="passwordconf" id="passwordconf" placeholder="••••••••" class="border  sm:text-sm  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-white border-gray-600 placeholder-gray-400 text-black focus:ring-black focus:border-black" required="">
                     </div>
                     <div>
-                        <select name="roles" id="roles" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select name="roles" id="roles" class="border text-sm  block w-full p-2.5 bg-white border-gray-600 placeholder-gray-400 text-black focus:ring-black focus:border-black">
                             <?php foreach ($role as $r) : ?>
                                 <option value="<?= $r['id'] ?>"> <?= $r['name'] ?> </option>
                             <?php endforeach ?>

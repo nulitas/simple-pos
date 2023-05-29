@@ -84,7 +84,7 @@ class Auth extends BaseController
         ];
 
 
-        return view('auth/Register', $data);
+        return view('auth/register', $data);
     }
 
 

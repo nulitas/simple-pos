@@ -31,7 +31,7 @@
 
 </head>
 
-<body class="bg-gray-900 dark:font-mono dark:text-slate-50">
+<body class="bg-gray-700 font-mono text-slate-50">
 
 
     <?= $this->include('layouts/navbar') ?>

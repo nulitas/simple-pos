@@ -16,20 +16,17 @@
 
 
 -- Dumping database structure for posu
-CREATE DATABASE IF NOT EXISTS `posu` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `posu`;
 
 -- Dumping structure for table posu.carts
 CREATE TABLE IF NOT EXISTS `carts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `price` decimal(20,6) DEFAULT NULL,
-  `image` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `price` float DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table posu.carts: ~0 rows (approximately)
 
 -- Dumping structure for table posu.products
 CREATE TABLE IF NOT EXISTS `products` (
@@ -38,12 +35,12 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `price` float(12,5) DEFAULT NULL,
+  `price` float DEFAULT NULL,
   `stock` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table posu.products: ~0 rows (approximately)
 
 -- Dumping structure for table posu.roles
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -52,7 +49,11 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table posu.roles: ~3 rows (approximately)
+INSERT INTO `roles` (`id`, `name`) VALUES
+	(1, 'Admin'),
+	(2, 'Cashier'),
+	(3, 'Buyer');
 
 -- Dumping structure for table posu.transactions
 CREATE TABLE IF NOT EXISTS `transactions` (
@@ -63,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `tendered` float NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table posu.transactions: ~0 rows (approximately)
 
 -- Dumping structure for table posu.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -78,7 +79,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `FK_users_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table posu.users: ~3 rows (approximately)
+INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
+	(2, 'admin', '$2y$10$cjoSLdyXAre0G4kbASRx6OAgd5u9o9kaXv.KDdc.NIpyF6MHmrE5q', 1),
+	(4, 'cashier', '$2y$10$1upkMY7XHDw19cxZK8AD8eN1lSJU2LZJntnnAnEO5.uHyl052nk8O', 2),
+	(9, 'buyer', '$2y$10$VEPLcauXNQufV.nVMZAxT.qY/k57BzllyFpTUWNKDA70Bd2bCa3pa', 3);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

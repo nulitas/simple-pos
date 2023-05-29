@@ -13,7 +13,7 @@
 
 
 
-                    <div class="relative flex flex-col min-w-0 border-2 border-solid border-white break-words bg-dark rounded mb-6 xl:mb-0 shadow-lg">
+                    <div class="relative flex flex-col min-w-0 border-2 border-solid border-white break-words bg-gray-800 rounded mb-6 xl:mb-0 shadow-lg">
                         <div class="text-white  inline-flex items-center justify-center  shadow-lg">
                             <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white object-cover w-full h-20" alt="<?= $value['image'] ?>">
                         </div>
@@ -48,12 +48,15 @@
                                         <i class="fas fa-arrow-up"></i> <?= $value['stock'] ?>
                                     </span>
 
-
-                                    <span class="whitespace-nowrap">
-                                        <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-700 border-none ">
-                                        <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
-                                        <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
-                                    </span>
+                                    <?php if (session()->get('isLoggedIn')) : ?>
+                                        <?php if (session()->role != 'Cashier') : ?>
+                                            <span class="whitespace-nowrap">
+                                                <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-700 border-none ">
+                                                <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
+                                                <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
+                                            </span>
+                                        <?php endif ?>
+                                    <?php endif ?>
 
 
                                 </p>
