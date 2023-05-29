@@ -13,7 +13,7 @@
     <!-- Invoice styling -->
     <style>
         body {
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             text-align: center;
             color: #777;
         }
@@ -45,7 +45,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
             font-size: 16px;
             line-height: 24px;
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             color: #555;
         }
 
@@ -95,6 +95,7 @@
 
         .invoice-box table tr.item.last td {
             border-bottom: none;
+
         }
 
         .invoice-box table tr.total td:nth-child(2) {
@@ -134,6 +135,8 @@
                                 Created: <?= $created_at ?><br />
                             </td>
 
+
+
                         </tr>
 
                     </table>
@@ -150,7 +153,7 @@
                             </td>
                         </tr>
                         <tr>
-                            >
+
 
                             <td>
                                 to: <?= $customer ?><br /><br />
@@ -159,14 +162,33 @@
 
                         <tr class="heading">
 
+                            <td>Product Name</td>
 
-                            <td>Total Price</td>
+                            <td>Amount</td>
+                            <td></td>
+                            <td>Total</td>
                         </tr>
 
+                        <?php foreach ($products as $product) : ?>
+                            <tr>
+
+                                <td> <?= $product['name'] ?> </td>
+
+                                <td> Rp.<?= $product['price'] ?></td>
+                                <td>x<?= $product['amount'] ?> </td>
+                                <td> Rp.<?= $product['price'] * $product['amount'] ?></td>
+
+                            </tr>
+                        <?php endforeach; ?>
+
+
+                        <hr>
                         <tr class="item">
 
 
-                            <td>Total: Rp.<?= $total_amount ?></td>
+                            <td><b> Total Purchase</b> Rp.<?= $total_amount ?></td>
+
+
                         </tr>
                     </table>
                 </td>

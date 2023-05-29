@@ -134,8 +134,11 @@ class Product extends BaseController
     public function delete($id)
     {
 
-        $this->productModel->delete($id);
 
+        $this->cartModel->emptyTable('cart');
+
+
+        $this->productModel->delete($id);
         return redirect()->to('main/products');
     }
 }

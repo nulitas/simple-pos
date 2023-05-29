@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ProductModel;
 use App\Models\TransactionModel;
 // use App\Models\TransactionItemModel;
+use App\Models\ProductInCartModel;
 use App\Models\CartModel;
 use Dompdf\Dompdf;
 
@@ -13,6 +14,7 @@ class Transaction extends BaseController
 {
     protected $productModel;
     protected $transactionModel;
+    protected $prodincartModel;
     // protected $transactionItemModel;
     protected $cartModel;
     protected $helper = ['form'];
@@ -22,6 +24,7 @@ class Transaction extends BaseController
 
         $this->productModel = new ProductModel();
         $this->transactionModel = new TransactionModel();
+        $this->prodincartModel = new ProductInCartModel();
         // $this->transactionItemModel = new TransactionItemModel();
         $this->cartModel = new CartModel();
     }
@@ -29,18 +32,16 @@ class Transaction extends BaseController
 
     public function add()
     {
-        $tendered = $this->request->getVar('tendered');
-
-        $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
-
-        if ($grandtotal == 0 || $tendered < $grandtotal) {
-            return redirect()->to(base_url('main/home'));
-        } else {
-            $fixTendered = $tendered;
-        }
-
         extract($this->request->getPost());
-
+        $session = service("session");
+        $uid = $session->get("id");
+        $tendered = $this->request->getVar('tendered');
+        // $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
+        // if ($grandtotal == 0 || $tendered < $grandtotal) {
+        //     return redirect()->to(base_url('main/home'));
+        // } else {
+        $fixTendered = $tendered;
+        // }
         $pref = date("Ymd");
         $code = sprintf("%'.05d", 1);
         while (true) {
@@ -52,28 +53,19 @@ class Transaction extends BaseController
                 break;
             }
         }
-
-
-
-
+        $grandtotal =  $this->cartModel->countCartValue($uid);
         // $quantity =  $this->request->getVar('quantity');
-
-
-
         $this->transactionModel->save([
             'code' => $code,
             'customer' => $this->request->getVar('customer'),
             'tendered' => $fixTendered,
+            'fk_cart' => $this->cartModel->getCartIdByUserId($uid),
             'total_amount' => $grandtotal,
         ]);
-
-
-
+        $this->cartModel->releaseCartByUserId($uid);
         // $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
-
-
-
-        $this->cartModel->emptyTable('cart');
+        $this->cartModel->releaseCartByUserId($uid);
+        // $this->cartModel->emptyTable('cart');
         return redirect()->to(base_url('main/home'));
     }
 
@@ -103,8 +95,20 @@ class Transaction extends BaseController
     public function generate($id = false)
     {
         $dompdf = new Dompdf();
-        // $transaction = $this->transactionModel->select('*')->orderBy('id', 'DESC')->limit(1)->first();
+        // $transaction = $this->transactionModel->select('*')->orderBy('id', 'ASC')->limit(1)->first();
         $transaction = $this->transactionModel->select('*')->where(['id' => $id])->first();
+        $products = $this->transactionModel->join('productincarts', 'transactions.fk_cart = productincarts.cart_id')->join('products', 'productincarts.product_id = products.id')->where('transactions.id', $id)->get()->getResultArray();
+
+        //         public function getProductsByTransactionId($transactionId)
+        //     {
+        //         return $this->db->table('transactions')
+        //         ->join('productincarts', 'transactions.fk_cart = productincarts.cart_id')
+        //         ->join('products', 'productincarts.product_id = products.id')
+        //         ->where('transactions.id', $transactionId)
+        //         ->get()
+        //         ->getResultArray();
+        //     }
+
 
         $data = [
             'id' => $transaction['id'],
@@ -112,7 +116,10 @@ class Transaction extends BaseController
             'customer' => $transaction['customer'],
             'total_amount' => $transaction['total_amount'],
             'tendered' => $transaction['tendered'],
-            'created_at' => $transaction['created_at']
+            'created_at' => $transaction['created_at'],
+            'products' => $products
+
+
         ];
         $html = view('pages/transactions/view.php', $data);
         // $html = "<h1> Example </h1>";

@@ -23,15 +23,21 @@ class Cart extends BaseController
 
     public function index()
     {
+        $session = service("session");
+        $userid = $session->get("id");
         $data = [
             'title' => 'Cart',
             // 'cart' => $this->cartModel->paginate(5),
-            'cart' => $this->cartModel->findAll(),
+            // 'cart' => $this->cartModel->findAll(),
+            'cart' => $this->cartModel->getCartWithProductsByUserId($userid),
+
             'product' => $this->productModel->findAll(),
-            'pager' => $this->cartModel->pager,
-            'count_carts' => count($this->cartModel->findAll()),
-            'total' => $this->cartModel->select('sum(price * quantity) as total')->first(),
-            'total_quantity' => $this->cartModel->select('sum(quantity) as total_quantity')->first(),
+            // 'pager' => $this->cartModel->pager,
+            'count_carts' => $this->cartModel->countCartsByUserId($userid),
+            'total' => $this->cartModel->countCartValue($userid),
+
+            // 'total' => $this->cartModel->select('sum(price * quantity) as total')->first(),
+            // 'total_quantity' => $this->cartModel->select('sum(quantity) as total_quantity')->first(),
             // 'cart' => \Config\Services::cart()
         ];
 
@@ -43,30 +49,34 @@ class Cart extends BaseController
 
     public function add()
     {
+        $session = service('session');
 
         // stock - quantity 
-
-
-
+        $uid = $session->get('id');
         $quantity =  $this->request->getVar('quantity');
+        $id = $this->request->getVar('id');
 
 
-        if ($quantity <= 0) {
-            return redirect()->to(base_url('main/home'));
-        } else {
-            $qty = $quantity;
-        }
+        $this->cartModel->addToCart($uid, $id, $quantity);
+
+
+        // if ($quantity <= 0) {
+        //     return redirect()->to(base_url('main/home'));
+        // } else {
+        //     $qty = $quantity;
+        // }
 
         $prodName = $this->request->getVar('name');
 
 
 
 
-        $this->cartModel->save([
-            'name' => $this->request->getVar('name'),
-            'price' => $this->request->getVar('price'),
-            'quantity' => $qty,
-        ]);
+        // $this->cartModel->save([
+        //     'product_id' => $this->request->getVar('id'),
+        //     'name' => $this->request->getVar('name'),
+        //     'price' => $this->request->getVar('price'),
+        //     'quantity' => $qty,
+        // ]);
 
         // Stock
         $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
@@ -76,34 +86,21 @@ class Cart extends BaseController
         return redirect()->to(base_url('main/home'));
     }
 
-    public function check()
-    {
-        $cart = \Config\Services::cart();
-
-        $response = $cart->contents();
-        $data = json_encode($response,  JSON_PRETTY_PRINT);
-        echo '<pre>';
-
-        print_r($data);
-
-
-        echo '</pre>';
-
-        echo $cart->totalItems();
-    }
-
-
 
     public function delete($id)
     {
         // $prodName = $this->request->getVar('name');
         // $quantity =  $this->request->getVar('quantity');
-        // $updatedStock = $this->productModel->where('name', 'name')->set('stock', "stock + $quantity", FALSE)->update();
+        // $updatedStock = $this->productModel->where('name', "Diego")->set('stock', "stock + $quantity", FALSE)->update();
+
+        // dd($quantity);
+
+        $session = service('session');
+        $uid = $session->get('id');
 
 
 
-
-        $this->cartModel->delete($id);
+        $this->cartModel->deleteFromCart($uid, $id);
 
         return redirect()->to('cart/index');
     }

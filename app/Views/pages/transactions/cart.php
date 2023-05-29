@@ -5,13 +5,15 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
         <h1 class=" text-2xl font-bold">..> Cart</h1>
-        <table class="m-4 w-full text-sm text-left shadow-lg text-gray-500 text-gray-400">
+        <table class="m-4 w-full text-sm text-left shadow-lg text-gray-500 ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         #
                     </th>
-
+                    <th scope="col" class="px-6 py-3">
+                        Cover
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         Product Name
                     </th>
@@ -33,17 +35,20 @@
                 <?php foreach ($cart as $item) : ?>
                     <tr class=" border-b bg-gray-800 border-gray-700">
 
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-white">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                             <?= $i++ ?>
                         </th>
+                        <td class="px-6 py-4">
+                            <img src="/img/<?= $item['image'] ?>" class="max-w-[100%] h-16 border-2 border-solid border-white" alt="<?= $item['image'] ?>">
 
+                        </td>
 
 
                         <td class="px-6 py-4">
                             <?= $item['name'] ?>
                         </td>
                         <td class="px-6 py-4">
-                            <?= $item['quantity'] ?> </td>
+                            <?= $item['amount'] ?> </td>
 
                         <!-- <input type="number" name="quantity" id="quantity" class="text-black"> -->
 
@@ -78,10 +83,12 @@
 
         <form action="<?= base_url('transaction/add') ?>" method="POST">
             <?= csrf_field() ?>
-            <input type="hidden" name="product_id[]">
+            <!-- <input type="hidden" name="product_id[]">
             <input type="hidden" name="price[]" value="0">
+            <input type="hidden" name="total_amount" value="0"> -->
             <input type="hidden" name="total_amount" value="0">
-            <p> Rp.<?= $total = array_sum($total) ?> </p>
+
+            <p> Rp.<?= $total  ?> </p>
 
 
             <div class="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-6">

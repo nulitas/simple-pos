@@ -32,11 +32,13 @@ class Main extends BaseController
 
     public function index()
     {
+        $session = service("session");
+        $userid = $session->get("id");
         $product = $this->productModel->findAll();
         $data = [
             'title' => 'Home',
             'product' => $product,
-            'count_carts' => count($this->cartModel->findAll()),
+            'count_carts' => $this->cartModel->countCartsByUserId($userid),
             'cartProductName' => $this->cartModel->find('name'),
 
 
@@ -51,9 +53,11 @@ class Main extends BaseController
 
     public function dashboard()
     {
+        $session = service("session");
+        $userid = $session->get("id");
         $data = [
             'title' => 'Dashboard',
-            'count_carts' => count($this->cartModel->findAll()),
+            'count_carts' => $this->cartModel->countCartsByUserId($userid),
             'count_transactions' => count($this->transactionModel->findAll()),
             'count_users' => count($this->userModel->findAll()),
             'count_products' => count($this->productModel->findAll())
@@ -64,11 +68,13 @@ class Main extends BaseController
     public function products()
     {
 
+        $session = service("session");
+        $userid = $session->get("id");
         $product = $this->productModel->findAll();
         $data = [
             'title' => 'Products',
             'product' => $product,
-            'count_carts' => count($this->cartModel->findAll())
+            'count_carts' => $this->cartModel->countCartsByUserId($userid)
 
         ];
         return view('pages/products/list', $data);
@@ -76,11 +82,13 @@ class Main extends BaseController
 
     public function transactions()
     {
+        $session = service("session");
+        $userid = $session->get("id");
         $transactions = $this->transactionModel->findAll();
         $data = [
             'title' => 'Transactions',
             'transactions' => $transactions,
-            'count_carts' => count($this->cartModel->findAll())
+            'count_carts' => $this->cartModel->countCartsByUserId($userid)
 
         ];
         return view('pages/transactions/list', $data);
@@ -88,12 +96,14 @@ class Main extends BaseController
 
     public function users()
     {
+        $session = service("session");
+        $userid = $session->get("id");
         $user = $this->userModel->findAll();
         $userRole = $this->userModel->find('role');
         $role = $userRole;
         $data = [
             'title' => 'Users',
-            'count_carts' => count($this->cartModel->findAll()),
+            'count_carts' => $this->cartModel->countCartsByUserId($userid),
 
             // 'pager' => $this->userModel->pager(),
 

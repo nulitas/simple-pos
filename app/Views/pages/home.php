@@ -25,11 +25,15 @@
                                         <h5 class="text-blueGray-400 uppercase font-bold text-xs">
 
                                             <?= form_open('/cart/add') ?>
+                                            <?= form_hidden('id', $value['id']); ?>
                                             <?= form_hidden('name', $value['name']); ?>
                                             <?= form_hidden('price', $value['price']); ?>
                                             <?= $value['category'] ?> </td>
 
                                         </h5>
+
+                                        <input type="hidden" name="product_id" value="  <?= $value['id'] ?>">
+
 
                                         <span class="font-semibold text-xl text-blueGray-700">
                                             <?= $value['name'] ?>
