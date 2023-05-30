@@ -15,7 +15,7 @@
 
                     <div class="relative flex flex-col min-w-0 border-2 border-solid border-white break-words bg-gray-800 rounded mb-6 xl:mb-0 shadow-lg">
                         <div class="text-white  inline-flex items-center justify-center  shadow-lg">
-                            <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white object-cover w-full h-20" alt="<?= $value['image'] ?>">
+                            <img src="/img/<?= $value['image'] ?>" class="border-2 border-solid border-white object-cover w-full h-10" alt="<?= $value['image'] ?>">
                         </div>
                         <div class="flex-auto p-4">
                             <div class="flex flex-wrap">

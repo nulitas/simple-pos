@@ -27,7 +27,7 @@ class Product extends BaseController
     public function add()
     {
 
-
+        session();
         $data = [
             'title' => 'Add Product',
             'count_carts' => count($this->cartModel->findAll()),
@@ -41,20 +41,20 @@ class Product extends BaseController
 
     public function store()
     {
-        // $rules = [
+        $rules = [
 
-        //     'name'    => 'required',
-        //     'category'    => 'required',
-        //     'price'    => 'required',
-        //     'stock'    => 'required',
-        //     'description'    => 'required',
-        // ];
+            'name'    => 'required',
+            'category'    => 'required',
+            'price'    => 'required',
+            'stock'    => 'required',
+            'description'    => 'required',
+        ];
 
-        // if (!$this->validate(
-        //     $rules
-        // )) {
-        //     return redirect()->back()->withInput();
-        // };
+        if (!$this->validate(
+            $rules
+        )) {
+            return redirect()->back()->withInput();
+        };
 
         $fileImg = $this->request->getFile('image');
         $fileImg->move('img');
@@ -134,11 +134,8 @@ class Product extends BaseController
     public function delete($id)
     {
 
-
-        $this->cartModel->emptyTable('cart');
-
-
         $this->productModel->delete($id);
+
         return redirect()->to('main/products');
     }
 }
