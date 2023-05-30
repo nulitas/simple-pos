@@ -17,16 +17,15 @@
 
 -- Dumping database structure for posu
 
+
 -- Dumping structure for table posu.carts
 CREATE TABLE IF NOT EXISTS `carts` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table posu.carts: ~0 rows (approximately)
+
 
 -- Dumping structure for table posu.products
 CREATE TABLE IF NOT EXISTS `products` (
@@ -38,7 +37,23 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` float DEFAULT NULL,
   `stock` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- Dumping structure for table posu.productincarts
+CREATE TABLE IF NOT EXISTS `productincarts` (
+  `product_id` int NOT NULL,
+  `amount` int DEFAULT NULL,
+  `cart_id` int NOT NULL,
+  KEY `FK_pic_product` (`product_id`),
+  KEY `FK_pic_cart` (`cart_id`),
+  CONSTRAINT `FK_pic_cart` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
+  CONSTRAINT `FK_pic_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table posu.productincarts: ~0 rows (approximately)
+
+
 
 -- Dumping data for table posu.products: ~0 rows (approximately)
 
@@ -63,10 +78,16 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `total_amount` double NOT NULL DEFAULT '0',
   `tendered` float NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `fk_cart` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_transactions_carts` (`fk_cart`) USING BTREE,
+  CONSTRAINT `FK_transactions_carts` FOREIGN KEY (`fk_cart`) REFERENCES `carts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table posu.transactions: ~0 rows (approximately)
+
+
+-- Dumping data for table posu.usercarts: ~0 rows (approximately)
 
 -- Dumping structure for table posu.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -78,6 +99,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `FK_users_roles` (`role`),
   CONSTRAINT `FK_users_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- Dumping structure for table posu.usercarts
+CREATE TABLE IF NOT EXISTS `usercarts` (
+  `user_id` int NOT NULL,
+  `cart_id` int NOT NULL,
+  KEY `FK_ucart_user` (`user_id`),
+  KEY `FK_ucart_cart` (`cart_id`),
+  CONSTRAINT `FK_ucart_cart` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
+  CONSTRAINT `FK_ucart_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- Dumping data for table posu.users: ~3 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES

@@ -36,12 +36,17 @@ class Transaction extends BaseController
         $session = service("session");
         $uid = $session->get("id");
         $tendered = $this->request->getVar('tendered');
-        // $grandtotal =  array_sum($this->cartModel->select('sum(price * quantity) as total')->first());
-        // if ($grandtotal == 0 || $tendered < $grandtotal) {
-        //     return redirect()->to(base_url('main/home'));
-        // } else {
-        $fixTendered = $tendered;
-        // }
+        $grandtotal =  $this->cartModel->countCartValue($uid);
+        if ($grandtotal == 0 || $tendered < $grandtotal) {
+            return redirect()->to(base_url('main/home'));
+        } else {
+            $fixTendered = $tendered;
+        }
+
+
+
+        // $this->cartModel->countCartValue($uid);
+
         $pref = date("Ymd");
         $code = sprintf("%'.05d", 1);
         while (true) {

@@ -22,9 +22,14 @@ class Cart extends BaseController
     }
 
     public function index()
+
     {
         $session = service("session");
         $userid = $session->get("id");
+
+
+        // dd($this->cartModel->countCartValue($userid));
+
         $data = [
             'title' => 'Cart',
             // 'cart' => $this->cartModel->paginate(5),

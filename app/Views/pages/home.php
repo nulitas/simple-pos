@@ -47,15 +47,21 @@
 
                                 <p class="text-sm text-blueGray-400 mt-8">Empty Stock!</p>
                             <?php else : ?>
+                                <span>
+                                    Rp.<?= $value['price'] ?>
+                                </span>
                                 <p class="text-sm text-blueGray-400 mt-4">
                                     <span class="text-emerald-500 mr-2">
-                                        <i class="fas fa-arrow-up"></i> <?= $value['stock'] ?>
+                                        <i class="fas fa-arrow-right"></i> <?= $value['stock'] ?>
+
                                     </span>
+
+
 
                                     <?php if (session()->get('isLoggedIn')) : ?>
                                         <?php if (session()->role != 'Cashier') : ?>
                                             <span class="whitespace-nowrap">
-                                                <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-700 border-none ">
+                                                <input type="number" name="quantity" id="quantity" class="text-white h-3 bg-gray-700 border-none " min="0" max="<?= $value['stock'] ?>">
                                                 <button type="submit"><i class="fas fa-shopping-cart"></i> </button>
                                                 <!-- <a href="/cart/add"><i class="fas fa-shopping-cart"></i></a> -->
                                             </span>

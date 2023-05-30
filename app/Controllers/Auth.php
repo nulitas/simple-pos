@@ -115,6 +115,48 @@ class Auth extends BaseController
     }
 
 
+    public function signup()
+    {
+
+
+
+        $data = [
+            'title' => 'SignUp',
+            'count_carts' => count($this->cartModel->findAll()),
+        ];
+
+
+        return view('auth/signup', $data);
+    }
+
+
+    public function storeup()
+    {
+
+
+        $rules = [
+            'username' => 'required',
+            'password' => 'required|min_length[6]',
+            'passwordconf' => 'required|matches[password]',
+        ];
+
+        if (!$this->validate($rules)) {
+            $validation = \Config\Services::validation();
+            return redirect()->to(url_to('register'))->withInput('validation', $validation);
+        } else {
+            $data = [
+                'username' => $this->request->getVar('username'),
+                'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'role' => 3
+            ];
+
+            $this->userModel->save($data);
+
+            return redirect()->to('auth/login');
+        }
+    }
+
+
     public function logout()
     {
         $this->session->destroy();

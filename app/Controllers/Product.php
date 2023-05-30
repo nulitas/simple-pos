@@ -41,20 +41,20 @@ class Product extends BaseController
 
     public function store()
     {
-        $rules = [
+        // $rules = [
 
-            'name'    => 'required',
-            'category'    => 'required',
-            'price'    => 'required',
-            'stock'    => 'required',
-            'description'    => 'required',
-        ];
+        //     'name'    => 'required',
+        //     'category'    => 'required',
+        //     'price'    => 'required',
+        //     'stock'    => 'required',
+        //     'description'    => 'required',
+        // ];
 
-        if (!$this->validate(
-            $rules
-        )) {
-            return redirect()->back()->withInput();
-        };
+        // if (!$this->validate(
+        //     $rules
+        // )) {
+        //     return redirect()->back()->withInput();
+        // };
 
         $fileImg = $this->request->getFile('image');
         $fileImg->move('img');

@@ -70,6 +70,7 @@ $routes->get('user/add', 'Auth::add', ['filter' => 'auth']);
 $routes->get('auth/login', 'Auth::login', ['as' => 'login']);
 $routes->post('auth/login/process', 'Auth::process', ['as' => 'auth']);
 $routes->get('auth/register', 'Auth::register', ['as' => 'register']);
+$routes->get('auth/signup', 'Auth::signup', ['as' => 'signup']);
 $routes->post('auth/register/store', 'Auth::store', ['as' => 'store']);
 $routes->get('/logout', 'Auth::logout', ['as' => 'logout']);
 
