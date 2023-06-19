@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="dark:font-mono">
+<body class="font-mono bg-gray-900">
 
 
 

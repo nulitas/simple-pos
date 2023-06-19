@@ -5,78 +5,80 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
         <h1 class=" text-2xl font-bold">..> Cart</h1>
-        <table class="m-4 w-full text-sm text-left shadow-lg text-gray-500 ">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        #
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Cover
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Product Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        QTY
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Price
-                    </th>
 
-                    <th scope="col" class="px-6 py-3">
-                        Actions
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php $i = 1 ?>
-                <?php foreach ($cart as $item) : ?>
-                    <tr class=" border-b bg-gray-800 border-gray-700">
-
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            <?= $i++ ?>
-                        </th>
-                        <td class="px-6 py-4">
-                            <img src="/img/<?= $item['image'] ?>" class="max-w-[100%] h-16 border-2 border-solid border-white" alt="<?= $item['image'] ?>">
-
-                        </td>
-
-
-                        <td class="px-6 py-4">
-                            <?= $item['name'] ?>
-                        </td>
-                        <td class="px-6 py-4">
-                            <?= $item['amount'] ?> </td>
-
-                        <!-- <input type="number" name="quantity" id="quantity" class="text-black"> -->
-
-                        </td>
-
-                        <td class="px-6 py-4">
-                            Rp.<?= $item['price'] ?> </td>
-
-                        <td class="px-6 py-4">
-                            <form action="/cart/<?= $item['id'] ?>" method="post" class="d-inline">
-                                <?= csrf_field() ?>
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700  focus:ring-4 focus:ring-primary-200 focus:ring-primary-900 hover:bg-primary-800" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-
-
-                <?php endforeach ?>
-                <?php if (count($cart) <= 0) : ?>
+        <div class="relative overflow-x-auto   ">
+            <table class="m-2 w-[98%] text-sm text-left shadow-lg text-gray-500 ">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                     <tr>
-                        <td class="p-4 text-center" colspan="7">not found.</td>
-                    </tr>
-                <?php endif ?>
-            </tbody>
-        </table>
+                        <th scope="col" class="px-6 py-3">
+                            #
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Cover
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Product Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            QTY
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Price
+                        </th>
 
+                        <th scope="col" class="px-6 py-3">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php $i = 1 ?>
+                    <?php foreach ($cart as $item) : ?>
+                        <tr class=" border-b bg-gray-800 border-gray-700">
+
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                <?= $i++ ?>
+                            </th>
+                            <td class="px-6 py-4">
+                                <img src="/img/<?= $item['image'] ?>" class="max-w-[100%] h-16 border-2 border-solid border-white" alt="<?= $item['image'] ?>">
+
+                            </td>
+
+
+                            <td class="px-6 py-4">
+                                <?= $item['name'] ?>
+                            </td>
+                            <td class="px-6 py-4">
+                                <?= $item['amount'] ?> </td>
+
+                            <!-- <input type="number" name="quantity" id="quantity" class="text-black"> -->
+
+                            </td>
+
+                            <td class="px-6 py-4">
+                                Rp.<?= $item['price'] ?> </td>
+
+                            <td class="px-6 py-4">
+                                <form action="/cart/<?= $item['id'] ?>" method="post" class="d-inline">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-700  focus:ring-4 focus:ring-primary-200 focus:ring-primary-900 hover:bg-primary-800" onclick="return confirm('Delete?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+
+
+                    <?php endforeach ?>
+                    <?php if (count($cart) <= 0) : ?>
+                        <tr>
+                            <td class="p-4 text-center" colspan="7">not found.</td>
+                        </tr>
+                    <?php endif ?>
+                </tbody>
+            </table>
+        </div>
 
 
         <h3 class="mt-4">Total Price</h3>

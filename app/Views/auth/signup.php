@@ -41,7 +41,7 @@
                         <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                         <button type="submit" class="relative text-black group-hover:text-white">Sign Up</button> </a>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <a href="<?= base_url('auth/login') ?>" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                        Already have an account? <a href="<?= base_url('auth/login') ?>" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</a>
                     </p>
 
 

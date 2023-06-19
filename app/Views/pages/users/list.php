@@ -5,7 +5,7 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 ">
         <h1 class=" text-2xl font-bold">..> Users</h1>
-        <div class="grid grid-cols-5 gap-4 m-4">
+        <div class="lg:grid-cols-5 grid-cols-1  gap-4 m-4">
 
             <a href="<?= base_url('auth/register') ?>" class="relative inline-block px-4 py-2 font-medium group my-4">
                 <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>

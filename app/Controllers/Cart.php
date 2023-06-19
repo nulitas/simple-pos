@@ -65,7 +65,7 @@ class Cart extends BaseController
         // ]);
 
         // Stock
-        //$updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
+        $updatedStock = $this->productModel->where('name', $prodName)->set('stock', "stock - $quantity", FALSE)->update();
 
 
 
